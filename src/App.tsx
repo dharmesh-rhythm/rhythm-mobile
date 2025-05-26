@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom';
 
 // Components
 import Header from './components/Header';
-import BottomNavigation from './components/BottomNavigation';
 
 // Pages
 import AccountsPage from './pages/Accounts/AccountsPage';
@@ -74,68 +73,76 @@ const theme = createTheme({
 });
 
 function App() {
-  const navigate = useNavigate();
   const currentPath = window.location.pathname;
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        <div className="app-container" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-          <Header />
-          <main style={{ flex: 1, padding: '16px', paddingBottom: '72px' }}>
-            <Routes>
-              <Route path="/" element={<Navigate to="/accounts" replace />} />
-              
-              {/* Account Routes */}
-              <Route path="/accounts" element={<AccountsPage />} />
-              <Route path="/accounts/new" element={<AccountFormPage />} />
-              <Route path="/accounts/:id" element={<AccountDetailPage />} />
-              <Route path="/accounts/:id/edit" element={<AccountFormPage />} />
-              <Route path="/accounts/:accountId/contacts/new" element={<ContactFormPage />} />
-              
-              {/* Contact Routes */}
-              <Route path="/contacts" element={<ContactsPage />} />
-              <Route path="/contacts/new" element={<ContactFormPage />} />
-              <Route path="/contacts/:id" element={<ContactDetailPage />} />
-              <Route path="/contacts/:id/edit" element={<ContactFormPage />} />
-
-              {/* Assessment Routes */}
-              <Route path="/assessments" element={<AssessmentsPage />} />
-              <Route path="/assessments/new" element={<AssessmentFormPage />} />
-              <Route path="/assessments/:id" element={<AssessmentDetailPage />} />
-              <Route path="/assessments/:id/edit" element={<AssessmentFormPage />} />
-              <Route path="/assessments/:id/respond" element={<AssessmentResponsePage />} />
-            </Routes>
-          </main>
-          <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
-            <BottomNavigation
-              value={currentPath}
-              onChange={(event, newValue) => {
-                navigate(newValue);
-              }}
-              showLabels
-            >
-              <BottomNavigationAction 
-                label="Accounts" 
-                value="/accounts" 
-                icon={<HomeIcon />} 
-              />
-              <BottomNavigationAction 
-                label="Contacts" 
-                value="/contacts" 
-                icon={<PersonIcon />} 
-              />
-              <BottomNavigationAction 
-                label="Assessments" 
-                value="/assessments" 
-                icon={<AssignmentIcon />} 
-              />
-            </BottomNavigation>
-          </Paper>
-        </div>
+        <AppContent currentPath={currentPath} />
       </Router>
     </ThemeProvider>
+  );
+}
+
+// Create a separate component that uses useNavigate inside Router context
+function AppContent({ currentPath }: { currentPath: string }) {
+  const navigate = useNavigate();
+  
+  return (
+    <div className="app-container" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <Header />
+      <main style={{ flex: 1, padding: '16px', paddingBottom: '72px' }}>
+        <Routes>
+          <Route path="/" element={<Navigate to="/accounts" replace />} />
+          
+          {/* Account Routes */}
+          <Route path="/accounts" element={<AccountsPage />} />
+          <Route path="/accounts/new" element={<AccountFormPage />} />
+          <Route path="/accounts/:id" element={<AccountDetailPage />} />
+          <Route path="/accounts/:id/edit" element={<AccountFormPage />} />
+          <Route path="/accounts/:accountId/contacts/new" element={<ContactFormPage />} />
+          
+          {/* Contact Routes */}
+          <Route path="/contacts" element={<ContactsPage />} />
+          <Route path="/contacts/new" element={<ContactFormPage />} />
+          <Route path="/contacts/:id" element={<ContactDetailPage />} />
+          <Route path="/contacts/:id/edit" element={<ContactFormPage />} />
+
+          {/* Assessment Routes */}
+          <Route path="/assessments" element={<AssessmentsPage />} />
+          <Route path="/assessments/new" element={<AssessmentFormPage />} />
+          <Route path="/assessments/:id" element={<AssessmentDetailPage />} />
+          <Route path="/assessments/:id/edit" element={<AssessmentFormPage />} />
+          <Route path="/assessments/:id/respond" element={<AssessmentResponsePage />} />
+        </Routes>
+      </main>
+      <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+        <BottomNavigation
+          value={currentPath}
+          onChange={(event, newValue) => {
+            navigate(newValue);
+          }}
+          showLabels
+        >
+          <BottomNavigationAction 
+            label="Accounts" 
+            value="/accounts" 
+            icon={<HomeIcon />} 
+          />
+          <BottomNavigationAction 
+            label="Contacts" 
+            value="/contacts" 
+            icon={<PersonIcon />} 
+          />
+          <BottomNavigationAction 
+            label="Assessments" 
+            value="/assessments" 
+            icon={<AssignmentIcon />} 
+          />
+        </BottomNavigation>
+      </Paper>
+    </div>
   );
 }
 

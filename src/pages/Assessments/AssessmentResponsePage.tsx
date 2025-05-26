@@ -25,7 +25,7 @@ import {
   ListItem,
   ListItemText,
   ListItemIcon,
-  Grid,
+  Stack,
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -103,8 +103,8 @@ const AssessmentResponsePage: React.FC = () => {
           setAnswers(answerMap);
           
           // Check which sections are complete
-          if (templateData) {
-            const completedSections = templateData.sections.map((section, index) => {
+          if (template) {
+            const completedSections = template.sections.map((section, index) => {
               const sectionQuestions = section.questions;
               const answeredQuestions = sectionQuestions.filter(q => {
                 const key = `${section.id}-${q.id}`;
@@ -350,9 +350,9 @@ const AssessmentResponsePage: React.FC = () => {
         <Box width={40}></Box> {/* Empty box for alignment */}
       </Box>
 
-      <Grid container spacing={3}>
+      <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 3 }}>
         {/* Left panel - Timeline */}
-        <Grid item xs={12} md={3}>
+        <Box sx={{ width: { xs: '100%', md: '25%' } }}>
           <Paper elevation={1} sx={{ p: 2, mb: 2 }}>
             <Typography variant="subtitle1" gutterBottom>Timeline</Typography>
             <List dense>
@@ -380,10 +380,10 @@ const AssessmentResponsePage: React.FC = () => {
               {template.sections.map((section, index) => (
                 <ListItem 
                   key={section.id || index}
-                  button
-                  selected={activeSection === index}
+                  component="div"
                   onClick={() => handleSectionChange(index)}
                   sx={{ 
+                    cursor: 'pointer',
                     borderRadius: 1,
                     mb: 0.5,
                     bgcolor: activeSection === index ? 'action.selected' : 'transparent'
@@ -401,10 +401,10 @@ const AssessmentResponsePage: React.FC = () => {
               ))}
             </List>
           </Paper>
-        </Grid>
+        </Box>
 
         {/* Right panel - Questions */}
-        <Grid item xs={12} md={9}>
+        <Box sx={{ width: { xs: '100%', md: '75%' } }}>
           {saveSuccess && (
             <Alert severity="success" sx={{ mb: 2 }}>
               Your answer has been saved
@@ -476,8 +476,8 @@ const AssessmentResponsePage: React.FC = () => {
               </Box>
             </>
           )}
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
     </Container>
   );
 };
