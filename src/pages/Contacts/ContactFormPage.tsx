@@ -168,7 +168,7 @@ const ContactFormPage: React.FC = () => {
             )}
 
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} component="div">
                 <TextField
                   fullWidth
                   id="FirstName"
@@ -182,7 +182,7 @@ const ContactFormPage: React.FC = () => {
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} component="div">
                 <TextField
                   fullWidth
                   id="LastName"
@@ -196,7 +196,7 @@ const ContactFormPage: React.FC = () => {
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} component="div">
                 <TextField
                   fullWidth
                   id="Email"
@@ -210,7 +210,7 @@ const ContactFormPage: React.FC = () => {
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} component="div">
                 <TextField
                   fullWidth
                   id="Phone"
@@ -222,7 +222,7 @@ const ContactFormPage: React.FC = () => {
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} component="div">
                 <TextField
                   fullWidth
                   id="Title"
@@ -234,7 +234,7 @@ const ContactFormPage: React.FC = () => {
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} component="div">
                 <TextField
                   fullWidth
                   id="Department"
@@ -246,7 +246,7 @@ const ContactFormPage: React.FC = () => {
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} component="div">
                 <FormControl fullWidth margin="normal" variant="outlined">
                   <InputLabel id="account-label">Account</InputLabel>
                   <Select
@@ -278,7 +278,7 @@ const ContactFormPage: React.FC = () => {
               Mailing Address
             </Typography>
             <Grid container spacing={2}>
-              <Grid item xs={12}>
+              <Grid item xs={12} component="div">
                 <TextField
                   fullWidth
                   id="MailingStreet"
@@ -292,7 +292,7 @@ const ContactFormPage: React.FC = () => {
                   rows={2}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} component="div">
                 <TextField
                   fullWidth
                   id="MailingCity"
@@ -304,7 +304,7 @@ const ContactFormPage: React.FC = () => {
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} component="div">
                 <TextField
                   fullWidth
                   id="MailingState"
@@ -316,7 +316,7 @@ const ContactFormPage: React.FC = () => {
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} component="div">
                 <TextField
                   fullWidth
                   id="MailingPostalCode"
@@ -328,7 +328,7 @@ const ContactFormPage: React.FC = () => {
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} component="div">
                 <TextField
                   fullWidth
                   id="MailingCountry"

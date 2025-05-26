@@ -11,7 +11,9 @@ import {
   Typography,
   MenuItem,
   Divider,
+  IconButton,
 } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { accountApi } from '../../services/api';
@@ -64,9 +66,9 @@ const validationSchema = yup.object({
 });
 
 const AccountFormPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id?: string }>();
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(id ? true : false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const isEditMode = Boolean(id);
@@ -89,12 +91,15 @@ const AccountFormPage: React.FC = () => {
     onSubmit: async (values) => {
       handleSubmit(values);
     },
+    enableReinitialize: true,
   });
 
   // Fetch account details if in edit mode
   useEffect(() => {
     if (isEditMode && id) {
       fetchAccountDetails(id);
+    } else {
+      setLoading(false);
     }
   }, [isEditMode, id]);
 
@@ -104,18 +109,7 @@ const AccountFormPage: React.FC = () => {
     try {
       const accountData = await accountApi.getAccount(accountId);
       // Set form values from fetched data
-      formik.setValues({
-        Name: accountData.Name || '',
-        Phone: accountData.Phone || '',
-        Website: accountData.Website || '',
-        Industry: accountData.Industry || '',
-        Description: accountData.Description || '',
-        BillingStreet: accountData.BillingStreet || '',
-        BillingCity: accountData.BillingCity || '',
-        BillingState: accountData.BillingState || '',
-        BillingPostalCode: accountData.BillingPostalCode || '',
-        BillingCountry: accountData.BillingCountry || '',
-      });
+      formik.setValues(accountData);
     } catch (err) {
       console.error('Failed to fetch account details:', err);
       setError('Failed to load account details. Please try again.');
@@ -163,6 +157,12 @@ const AccountFormPage: React.FC = () => {
 
   return (
     <Container maxWidth="sm">
+      <Box mt={2} mb={3}>
+        <IconButton onClick={handleCancel} edge="start" aria-label="back">
+          <ArrowBackIcon />
+        </IconButton>
+      </Box>
+
       <Card>
         <CardContent>
           <Typography variant="h6" component="h2" gutterBottom>
@@ -172,7 +172,7 @@ const AccountFormPage: React.FC = () => {
           <form onSubmit={formik.handleSubmit}>
             <Grid container spacing={2}>
               {/* Basic Information */}
-              <Grid item xs={12}>
+              <Grid item xs={12} component="div">
                 <TextField
                   fullWidth
                   id="Name"
@@ -189,7 +189,7 @@ const AccountFormPage: React.FC = () => {
                 />
               </Grid>
               
-              <Grid item xs={12}>
+              <Grid item xs={12} component="div">
                 <TextField
                   fullWidth
                   id="Industry"
@@ -212,7 +212,7 @@ const AccountFormPage: React.FC = () => {
                 </TextField>
               </Grid>
               
-              <Grid item xs={12}>
+              <Grid item xs={12} component="div">
                 <TextField
                   fullWidth
                   id="Phone"
@@ -225,7 +225,7 @@ const AccountFormPage: React.FC = () => {
                 />
               </Grid>
               
-              <Grid item xs={12}>
+              <Grid item xs={12} component="div">
                 <TextField
                   fullWidth
                   id="Website"
@@ -238,14 +238,14 @@ const AccountFormPage: React.FC = () => {
                 />
               </Grid>
               
-              <Grid item xs={12}>
+              <Grid item xs={12} component="div">
                 <Divider sx={{ my: 1 }} />
                 <Typography variant="subtitle2" gutterBottom sx={{ mt: 1 }}>
                   Billing Address
                 </Typography>
               </Grid>
               
-              <Grid item xs={12}>
+              <Grid item xs={12} component="div">
                 <TextField
                   fullWidth
                   id="BillingStreet"
@@ -260,7 +260,7 @@ const AccountFormPage: React.FC = () => {
                 />
               </Grid>
               
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} component="div">
                 <TextField
                   fullWidth
                   id="BillingCity"
@@ -273,7 +273,7 @@ const AccountFormPage: React.FC = () => {
                 />
               </Grid>
               
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} component="div">
                 <TextField
                   fullWidth
                   id="BillingState"
@@ -286,7 +286,7 @@ const AccountFormPage: React.FC = () => {
                 />
               </Grid>
               
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} component="div">
                 <TextField
                   fullWidth
                   id="BillingPostalCode"
@@ -299,7 +299,7 @@ const AccountFormPage: React.FC = () => {
                 />
               </Grid>
               
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} component="div">
                 <TextField
                   fullWidth
                   id="BillingCountry"
@@ -312,11 +312,11 @@ const AccountFormPage: React.FC = () => {
                 />
               </Grid>
               
-              <Grid item xs={12}>
+              <Grid item xs={12} component="div">
                 <Divider sx={{ my: 1 }} />
               </Grid>
               
-              <Grid item xs={12}>
+              <Grid item xs={12} component="div">
                 <TextField
                   fullWidth
                   id="Description"
@@ -331,7 +331,7 @@ const AccountFormPage: React.FC = () => {
                 />
               </Grid>
               
-              <Grid item xs={12}>
+              <Grid item xs={12} component="div">
                 <Box display="flex" justifyContent="space-between" mt={2}>
                   <Button
                     variant="outlined"
@@ -352,7 +352,7 @@ const AccountFormPage: React.FC = () => {
               </Grid>
               
               {error && submitting && (
-                <Grid item xs={12}>
+                <Grid item xs={12} component="div">
                   <ErrorMessage message={error} />
                 </Grid>
               )}

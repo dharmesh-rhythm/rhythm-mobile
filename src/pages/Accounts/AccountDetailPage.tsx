@@ -145,7 +145,7 @@ const AccountDetailPage: React.FC = () => {
 
           <Grid container spacing={2}>
             {account.Phone && (
-              <Grid item xs={12}>
+              <Grid item xs={12} component="div">
                 <Box display="flex" alignItems="center">
                   <PhoneIcon fontSize="small" color="action" sx={{ mr: 1 }} />
                   <Typography variant="body1">{account.Phone}</Typography>
@@ -154,7 +154,7 @@ const AccountDetailPage: React.FC = () => {
             )}
 
             {account.Website && (
-              <Grid item xs={12}>
+              <Grid item xs={12} component="div">
                 <Box display="flex" alignItems="center">
                   <LanguageIcon fontSize="small" color="action" sx={{ mr: 1 }} />
                   <Typography variant="body1">
@@ -171,7 +171,7 @@ const AccountDetailPage: React.FC = () => {
             )}
 
             {(account.BillingStreet || account.BillingCity || account.BillingState) && (
-              <Grid item xs={12}>
+              <Grid item xs={12} component="div">
                 <Box display="flex" alignItems="flex-start">
                   <BusinessIcon fontSize="small" color="action" sx={{ mr: 1, mt: 0.5 }} />
                   <Box>

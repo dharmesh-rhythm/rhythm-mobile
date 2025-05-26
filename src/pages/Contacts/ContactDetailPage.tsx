@@ -258,7 +258,7 @@ const ContactDetailPage: React.FC = () => {
           </Typography>
           <Grid container spacing={2}>
             {contact.createdAt && (
-              <Grid item xs={6}>
+              <Grid item xs={6} component="div">
                 <Typography variant="body2" color="text.secondary">Created</Typography>
                 <Typography variant="body1">
                   {new Date(contact.createdAt).toLocaleDateString()}
@@ -266,7 +266,7 @@ const ContactDetailPage: React.FC = () => {
               </Grid>
             )}
             {contact.updatedAt && (
-              <Grid item xs={6}>
+              <Grid item xs={6} component="div">
                 <Typography variant="body2" color="text.secondary">Last Modified</Typography>
                 <Typography variant="body1">
                   {new Date(contact.updatedAt).toLocaleDateString()}
