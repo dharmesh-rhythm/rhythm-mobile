@@ -138,7 +138,7 @@ const AccountsPage: React.FC = () => {
             {filteredAccounts.map((account, index) => (
               <React.Fragment key={account.id || index}>
                 {index > 0 && <Divider />}
-                <ListItem button onClick={() => handleAccountClick(account.id || '')}>
+                <ListItem component="div" onClick={() => handleAccountClick(account.id || '')} sx={{ cursor: 'pointer' }}>
                   <ListItemText
                     primary={account.Name}
                     secondary={

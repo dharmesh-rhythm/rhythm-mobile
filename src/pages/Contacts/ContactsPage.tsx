@@ -144,7 +144,7 @@ const ContactsPage: React.FC = () => {
             {filteredContacts.map((contact, index) => (
               <React.Fragment key={contact.id || index}>
                 {index > 0 && <Divider />}
-                <ListItem button onClick={() => handleContactClick(contact.id || '')}>
+                <ListItem component="div" onClick={() => handleContactClick(contact.id || '')} sx={{ cursor: 'pointer' }}>
                   <ListItemText
                     primary={`${contact.FirstName} ${contact.LastName}`}
                     secondary={
