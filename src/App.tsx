@@ -1,7 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import { Home as HomeIcon, 
+         Person as PersonIcon, 
+         Assignment as AssignmentIcon } from '@mui/icons-material';
+import { BottomNavigation, BottomNavigationAction, Paper } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 // Components
 import Header from './components/Header';
@@ -14,6 +19,10 @@ import AccountFormPage from './pages/Accounts/AccountFormPage';
 import ContactsPage from './pages/Contacts/ContactsPage';
 import ContactDetailPage from './pages/Contacts/ContactDetailPage';
 import ContactFormPage from './pages/Contacts/ContactFormPage';
+import AssessmentsPage from './pages/Assessments/AssessmentsPage';
+import AssessmentDetailPage from './pages/Assessments/AssessmentDetailPage';
+import AssessmentFormPage from './pages/Assessments/AssessmentFormPage';
+import AssessmentResponsePage from './pages/Assessments/AssessmentResponsePage';
 
 // Create a theme with Salesforce-like colors
 const theme = createTheme({
@@ -65,6 +74,9 @@ const theme = createTheme({
 });
 
 function App() {
+  const navigate = useNavigate();
+  const currentPath = window.location.pathname;
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -73,22 +85,54 @@ function App() {
           <Header />
           <main style={{ flex: 1, padding: '16px', paddingBottom: '72px' }}>
             <Routes>
+              <Route path="/" element={<Navigate to="/accounts" replace />} />
+              
               {/* Account Routes */}
-              <Route path="/" element={<AccountsPage />} />
               <Route path="/accounts" element={<AccountsPage />} />
               <Route path="/accounts/new" element={<AccountFormPage />} />
               <Route path="/accounts/:id" element={<AccountDetailPage />} />
               <Route path="/accounts/:id/edit" element={<AccountFormPage />} />
+              <Route path="/accounts/:accountId/contacts/new" element={<ContactFormPage />} />
               
               {/* Contact Routes */}
               <Route path="/contacts" element={<ContactsPage />} />
               <Route path="/contacts/new" element={<ContactFormPage />} />
               <Route path="/contacts/:id" element={<ContactDetailPage />} />
               <Route path="/contacts/:id/edit" element={<ContactFormPage />} />
-              <Route path="/accounts/:accountId/contacts/new" element={<ContactFormPage />} />
+
+              {/* Assessment Routes */}
+              <Route path="/assessments" element={<AssessmentsPage />} />
+              <Route path="/assessments/new" element={<AssessmentFormPage />} />
+              <Route path="/assessments/:id" element={<AssessmentDetailPage />} />
+              <Route path="/assessments/:id/edit" element={<AssessmentFormPage />} />
+              <Route path="/assessments/:id/respond" element={<AssessmentResponsePage />} />
             </Routes>
           </main>
-          <BottomNavigation />
+          <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+            <BottomNavigation
+              value={currentPath}
+              onChange={(event, newValue) => {
+                navigate(newValue);
+              }}
+              showLabels
+            >
+              <BottomNavigationAction 
+                label="Accounts" 
+                value="/accounts" 
+                icon={<HomeIcon />} 
+              />
+              <BottomNavigationAction 
+                label="Contacts" 
+                value="/contacts" 
+                icon={<PersonIcon />} 
+              />
+              <BottomNavigationAction 
+                label="Assessments" 
+                value="/assessments" 
+                icon={<AssignmentIcon />} 
+              />
+            </BottomNavigation>
+          </Paper>
         </div>
       </Router>
     </ThemeProvider>

@@ -138,4 +138,167 @@ export const contactApi = {
       throw error;
     }
   }
+};
+
+// Assessment APIs
+export const assessmentApi = {
+  // Get all assessments
+  getAssessments: async () => {
+    try {
+      const response = await api.get('/assessments');
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching assessments:', error);
+      throw error;
+    }
+  },
+
+  // Get assessments for an account
+  getAccountAssessments: async (accountId: string) => {
+    try {
+      const response = await api.get(`/accounts/${accountId}/assessments`);
+      return response.data;
+    } catch (error) {
+      console.error(`Error fetching assessments for account ${accountId}:`, error);
+      throw error;
+    }
+  },
+
+  // Get assessment by ID
+  getAssessment: async (id: string) => {
+    try {
+      const response = await api.get(`/assessments/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error(`Error fetching assessment ${id}:`, error);
+      throw error;
+    }
+  },
+
+  // Create new assessment
+  createAssessment: async (assessmentData: any) => {
+    try {
+      const response = await api.post('/assessments', assessmentData);
+      return response.data;
+    } catch (error) {
+      console.error('Error creating assessment:', error);
+      throw error;
+    }
+  },
+
+  // Update existing assessment
+  updateAssessment: async (id: string, assessmentData: any) => {
+    try {
+      const response = await api.put(`/assessments/${id}`, assessmentData);
+      return response.data;
+    } catch (error) {
+      console.error(`Error updating assessment ${id}:`, error);
+      throw error;
+    }
+  },
+
+  // Delete assessment
+  deleteAssessment: async (id: string) => {
+    try {
+      const response = await api.delete(`/assessments/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error(`Error deleting assessment ${id}:`, error);
+      throw error;
+    }
+  }
+};
+
+// Template APIs
+export const templateApi = {
+  // Get all templates
+  getTemplates: async () => {
+    try {
+      const response = await api.get('/templates');
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching templates:', error);
+      throw error;
+    }
+  },
+
+  // Get template by ID
+  getTemplate: async (id: string) => {
+    try {
+      const response = await api.get(`/templates/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error(`Error fetching template ${id}:`, error);
+      throw error;
+    }
+  }
+};
+
+// Assessment Response APIs
+export const responseApi = {
+  // Get all responses
+  getResponses: async () => {
+    try {
+      const response = await api.get('/responses');
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching responses:', error);
+      throw error;
+    }
+  },
+
+  // Get response by ID
+  getResponse: async (id: string) => {
+    try {
+      const response = await api.get(`/responses/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error(`Error fetching response ${id}:`, error);
+      throw error;
+    }
+  },
+
+  // Create new response
+  createResponse: async (responseData: any) => {
+    try {
+      const response = await api.post('/responses', responseData);
+      return response.data;
+    } catch (error) {
+      console.error('Error creating response:', error);
+      throw error;
+    }
+  },
+
+  // Update existing response
+  updateResponse: async (id: string, responseData: any) => {
+    try {
+      const response = await api.put(`/responses/${id}`, responseData);
+      return response.data;
+    } catch (error) {
+      console.error(`Error updating response ${id}:`, error);
+      throw error;
+    }
+  },
+
+  // Submit response
+  submitResponse: async (id: string) => {
+    try {
+      const response = await api.post(`/responses/${id}/submit`);
+      return response.data;
+    } catch (error) {
+      console.error(`Error submitting response ${id}:`, error);
+      throw error;
+    }
+  },
+
+  // Save question response
+  saveQuestionResponse: async (responseId: string, questionData: any) => {
+    try {
+      const response = await api.post(`/responses/${responseId}/questions`, questionData);
+      return response.data;
+    } catch (error) {
+      console.error(`Error saving question response:`, error);
+      throw error;
+    }
+  }
 }; 
