@@ -256,24 +256,24 @@ const ContactDetailPage: React.FC = () => {
           <Typography variant="h6" gutterBottom>
             System Information
           </Typography>
-          <Grid container spacing={2}>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
             {contact.createdAt && (
-              <Grid item xs={6} component="div">
+              <Box sx={{ flex: '1 0 40%' }}>
                 <Typography variant="body2" color="text.secondary">Created</Typography>
                 <Typography variant="body1">
                   {new Date(contact.createdAt).toLocaleDateString()}
                 </Typography>
-              </Grid>
+              </Box>
             )}
             {contact.updatedAt && (
-              <Grid item xs={6} component="div">
+              <Box sx={{ flex: '1 0 40%' }}>
                 <Typography variant="body2" color="text.secondary">Last Modified</Typography>
                 <Typography variant="body1">
                   {new Date(contact.updatedAt).toLocaleDateString()}
                 </Typography>
-              </Grid>
+              </Box>
             )}
-          </Grid>
+          </Box>
         </CardContent>
       </Card>
 

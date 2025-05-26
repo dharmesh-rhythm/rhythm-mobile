@@ -10,7 +10,6 @@ import {
   Button,
   IconButton,
   MenuItem,
-  Grid,
   Divider,
   FormControl,
   InputLabel,
@@ -167,36 +166,39 @@ const ContactFormPage: React.FC = () => {
               </Box>
             )}
 
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6} component="div">
-                <TextField
-                  fullWidth
-                  id="FirstName"
-                  name="FirstName"
-                  label="First Name *"
-                  value={formik.values.FirstName}
-                  onChange={formik.handleChange}
-                  error={formik.touched.FirstName && Boolean(formik.errors.FirstName)}
-                  helperText={formik.touched.FirstName && formik.errors.FirstName}
-                  margin="normal"
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6} component="div">
-                <TextField
-                  fullWidth
-                  id="LastName"
-                  name="LastName"
-                  label="Last Name *"
-                  value={formik.values.LastName}
-                  onChange={formik.handleChange}
-                  error={formik.touched.LastName && Boolean(formik.errors.LastName)}
-                  helperText={formik.touched.LastName && formik.errors.LastName}
-                  margin="normal"
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid item xs={12} component="div">
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              <Box sx={{ display: 'flex', gap: 2 }}>
+                <Box sx={{ flex: 1 }}>
+                  <TextField
+                    fullWidth
+                    id="FirstName"
+                    name="FirstName"
+                    label="First Name *"
+                    value={formik.values.FirstName}
+                    onChange={formik.handleChange}
+                    error={formik.touched.FirstName && Boolean(formik.errors.FirstName)}
+                    helperText={formik.touched.FirstName && formik.errors.FirstName}
+                    margin="normal"
+                    variant="outlined"
+                  />
+                </Box>
+                <Box sx={{ flex: 1 }}>
+                  <TextField
+                    fullWidth
+                    id="LastName"
+                    name="LastName"
+                    label="Last Name *"
+                    value={formik.values.LastName}
+                    onChange={formik.handleChange}
+                    error={formik.touched.LastName && Boolean(formik.errors.LastName)}
+                    helperText={formik.touched.LastName && formik.errors.LastName}
+                    margin="normal"
+                    variant="outlined"
+                  />
+                </Box>
+              </Box>
+              
+              <Box>
                 <TextField
                   fullWidth
                   id="Email"
@@ -209,8 +211,9 @@ const ContactFormPage: React.FC = () => {
                   margin="normal"
                   variant="outlined"
                 />
-              </Grid>
-              <Grid item xs={12} component="div">
+              </Box>
+              
+              <Box>
                 <TextField
                   fullWidth
                   id="Phone"
@@ -221,32 +224,36 @@ const ContactFormPage: React.FC = () => {
                   margin="normal"
                   variant="outlined"
                 />
-              </Grid>
-              <Grid item xs={12} sm={6} component="div">
-                <TextField
-                  fullWidth
-                  id="Title"
-                  name="Title"
-                  label="Title"
-                  value={formik.values.Title}
-                  onChange={formik.handleChange}
-                  margin="normal"
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6} component="div">
-                <TextField
-                  fullWidth
-                  id="Department"
-                  name="Department"
-                  label="Department"
-                  value={formik.values.Department}
-                  onChange={formik.handleChange}
-                  margin="normal"
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid item xs={12} component="div">
+              </Box>
+              
+              <Box sx={{ display: 'flex', gap: 2 }}>
+                <Box sx={{ flex: 1 }}>
+                  <TextField
+                    fullWidth
+                    id="Title"
+                    name="Title"
+                    label="Title"
+                    value={formik.values.Title}
+                    onChange={formik.handleChange}
+                    margin="normal"
+                    variant="outlined"
+                  />
+                </Box>
+                <Box sx={{ flex: 1 }}>
+                  <TextField
+                    fullWidth
+                    id="Department"
+                    name="Department"
+                    label="Department"
+                    value={formik.values.Department}
+                    onChange={formik.handleChange}
+                    margin="normal"
+                    variant="outlined"
+                  />
+                </Box>
+              </Box>
+              
+              <Box>
                 <FormControl fullWidth margin="normal" variant="outlined">
                   <InputLabel id="account-label">Account</InputLabel>
                   <Select
@@ -267,8 +274,8 @@ const ContactFormPage: React.FC = () => {
                     ))}
                   </Select>
                 </FormControl>
-              </Grid>
-            </Grid>
+              </Box>
+            </Box>
           </CardContent>
         </Card>
 
@@ -277,8 +284,8 @@ const ContactFormPage: React.FC = () => {
             <Typography variant="h6" gutterBottom>
               Mailing Address
             </Typography>
-            <Grid container spacing={2}>
-              <Grid item xs={12} component="div">
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              <Box>
                 <TextField
                   fullWidth
                   id="MailingStreet"
@@ -291,56 +298,62 @@ const ContactFormPage: React.FC = () => {
                   multiline
                   rows={2}
                 />
-              </Grid>
-              <Grid item xs={12} sm={6} component="div">
-                <TextField
-                  fullWidth
-                  id="MailingCity"
-                  name="MailingCity"
-                  label="City"
-                  value={formik.values.MailingCity}
-                  onChange={formik.handleChange}
-                  margin="normal"
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6} component="div">
-                <TextField
-                  fullWidth
-                  id="MailingState"
-                  name="MailingState"
-                  label="State/Province"
-                  value={formik.values.MailingState}
-                  onChange={formik.handleChange}
-                  margin="normal"
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6} component="div">
-                <TextField
-                  fullWidth
-                  id="MailingPostalCode"
-                  name="MailingPostalCode"
-                  label="Postal Code"
-                  value={formik.values.MailingPostalCode}
-                  onChange={formik.handleChange}
-                  margin="normal"
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6} component="div">
-                <TextField
-                  fullWidth
-                  id="MailingCountry"
-                  name="MailingCountry"
-                  label="Country"
-                  value={formik.values.MailingCountry}
-                  onChange={formik.handleChange}
-                  margin="normal"
-                  variant="outlined"
-                />
-              </Grid>
-            </Grid>
+              </Box>
+              
+              <Box sx={{ display: 'flex', gap: 2 }}>
+                <Box sx={{ flex: 1 }}>
+                  <TextField
+                    fullWidth
+                    id="MailingCity"
+                    name="MailingCity"
+                    label="City"
+                    value={formik.values.MailingCity}
+                    onChange={formik.handleChange}
+                    margin="normal"
+                    variant="outlined"
+                  />
+                </Box>
+                <Box sx={{ flex: 1 }}>
+                  <TextField
+                    fullWidth
+                    id="MailingState"
+                    name="MailingState"
+                    label="State/Province"
+                    value={formik.values.MailingState}
+                    onChange={formik.handleChange}
+                    margin="normal"
+                    variant="outlined"
+                  />
+                </Box>
+              </Box>
+              
+              <Box sx={{ display: 'flex', gap: 2 }}>
+                <Box sx={{ flex: 1 }}>
+                  <TextField
+                    fullWidth
+                    id="MailingPostalCode"
+                    name="MailingPostalCode"
+                    label="Postal Code"
+                    value={formik.values.MailingPostalCode}
+                    onChange={formik.handleChange}
+                    margin="normal"
+                    variant="outlined"
+                  />
+                </Box>
+                <Box sx={{ flex: 1 }}>
+                  <TextField
+                    fullWidth
+                    id="MailingCountry"
+                    name="MailingCountry"
+                    label="Country"
+                    value={formik.values.MailingCountry}
+                    onChange={formik.handleChange}
+                    margin="normal"
+                    variant="outlined"
+                  />
+                </Box>
+              </Box>
+            </Box>
           </CardContent>
         </Card>
 

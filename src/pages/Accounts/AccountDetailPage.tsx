@@ -143,56 +143,50 @@ const AccountDetailPage: React.FC = () => {
 
           <Divider sx={{ my: 2 }} />
 
-          <Grid container spacing={2}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             {account.Phone && (
-              <Grid item xs={12} component="div">
-                <Box display="flex" alignItems="center">
-                  <PhoneIcon fontSize="small" color="action" sx={{ mr: 1 }} />
-                  <Typography variant="body1">{account.Phone}</Typography>
-                </Box>
-              </Grid>
+              <Box display="flex" alignItems="center">
+                <PhoneIcon fontSize="small" color="action" sx={{ mr: 1 }} />
+                <Typography variant="body1">{account.Phone}</Typography>
+              </Box>
             )}
 
             {account.Website && (
-              <Grid item xs={12} component="div">
-                <Box display="flex" alignItems="center">
-                  <LanguageIcon fontSize="small" color="action" sx={{ mr: 1 }} />
-                  <Typography variant="body1">
-                    <a href={account.Website.startsWith('http') ? account.Website : `https://${account.Website}`} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      style={{ color: 'inherit', textDecoration: 'none' }}
-                    >
-                      {account.Website}
-                    </a>
-                  </Typography>
-                </Box>
-              </Grid>
+              <Box display="flex" alignItems="center">
+                <LanguageIcon fontSize="small" color="action" sx={{ mr: 1 }} />
+                <Typography variant="body1">
+                  <a href={account.Website.startsWith('http') ? account.Website : `https://${account.Website}`} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    style={{ color: 'inherit', textDecoration: 'none' }}
+                  >
+                    {account.Website}
+                  </a>
+                </Typography>
+              </Box>
             )}
 
             {(account.BillingStreet || account.BillingCity || account.BillingState) && (
-              <Grid item xs={12} component="div">
-                <Box display="flex" alignItems="flex-start">
-                  <BusinessIcon fontSize="small" color="action" sx={{ mr: 1, mt: 0.5 }} />
-                  <Box>
-                    {account.BillingStreet && (
-                      <Typography variant="body1">{account.BillingStreet}</Typography>
-                    )}
-                    <Typography variant="body1">
-                      {[
-                        account.BillingCity,
-                        account.BillingState,
-                        account.BillingPostalCode
-                      ]
-                        .filter(Boolean)
-                        .join(', ')}
-                    </Typography>
-                    {account.BillingCountry && (
-                      <Typography variant="body1">{account.BillingCountry}</Typography>
-                    )}
-                  </Box>
+              <Box display="flex" alignItems="flex-start">
+                <BusinessIcon fontSize="small" color="action" sx={{ mr: 1, mt: 0.5 }} />
+                <Box>
+                  {account.BillingStreet && (
+                    <Typography variant="body1">{account.BillingStreet}</Typography>
+                  )}
+                  <Typography variant="body1">
+                    {[
+                      account.BillingCity,
+                      account.BillingState,
+                      account.BillingPostalCode
+                    ]
+                      .filter(Boolean)
+                      .join(', ')}
+                  </Typography>
+                  {account.BillingCountry && (
+                    <Typography variant="body1">{account.BillingCountry}</Typography>
+                  )}
                 </Box>
-              </Grid>
+              </Box>
             )}
           </Grid>
 

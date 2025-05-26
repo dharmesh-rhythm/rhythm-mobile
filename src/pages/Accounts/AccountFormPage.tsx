@@ -7,7 +7,6 @@ import {
   CardContent,
   TextField,
   Button,
-  Grid,
   Typography,
   MenuItem,
   Divider,
@@ -170,9 +169,9 @@ const AccountFormPage: React.FC = () => {
           </Typography>
           
           <form onSubmit={formik.handleSubmit}>
-            <Grid container spacing={2}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               {/* Basic Information */}
-              <Grid item xs={12} component="div">
+              <Box>
                 <TextField
                   fullWidth
                   id="Name"
@@ -187,9 +186,9 @@ const AccountFormPage: React.FC = () => {
                   margin="normal"
                   size="small"
                 />
-              </Grid>
+              </Box>
               
-              <Grid item xs={12} component="div">
+              <Box>
                 <TextField
                   fullWidth
                   id="Industry"
@@ -210,9 +209,9 @@ const AccountFormPage: React.FC = () => {
                     </MenuItem>
                   ))}
                 </TextField>
-              </Grid>
+              </Box>
               
-              <Grid item xs={12} component="div">
+              <Box>
                 <TextField
                   fullWidth
                   id="Phone"
@@ -223,9 +222,9 @@ const AccountFormPage: React.FC = () => {
                   margin="normal"
                   size="small"
                 />
-              </Grid>
+              </Box>
               
-              <Grid item xs={12} component="div">
+              <Box>
                 <TextField
                   fullWidth
                   id="Website"
@@ -236,16 +235,16 @@ const AccountFormPage: React.FC = () => {
                   margin="normal"
                   size="small"
                 />
-              </Grid>
+              </Box>
               
-              <Grid item xs={12} component="div">
+              <Box>
                 <Divider sx={{ my: 1 }} />
                 <Typography variant="subtitle2" gutterBottom sx={{ mt: 1 }}>
                   Billing Address
                 </Typography>
-              </Grid>
+              </Box>
               
-              <Grid item xs={12} component="div">
+              <Box>
                 <TextField
                   fullWidth
                   id="BillingStreet"
@@ -258,65 +257,69 @@ const AccountFormPage: React.FC = () => {
                   margin="normal"
                   size="small"
                 />
-              </Grid>
+              </Box>
               
-              <Grid item xs={12} sm={6} component="div">
-                <TextField
-                  fullWidth
-                  id="BillingCity"
-                  name="BillingCity"
-                  label="City"
-                  value={formik.values.BillingCity}
-                  onChange={formik.handleChange}
-                  margin="normal"
-                  size="small"
-                />
-              </Grid>
+              <Box sx={{ display: 'flex', gap: 2 }}>
+                <Box sx={{ flex: 1 }}>
+                  <TextField
+                    fullWidth
+                    id="BillingCity"
+                    name="BillingCity"
+                    label="City"
+                    value={formik.values.BillingCity}
+                    onChange={formik.handleChange}
+                    margin="normal"
+                    size="small"
+                  />
+                </Box>
+                
+                <Box sx={{ flex: 1 }}>
+                  <TextField
+                    fullWidth
+                    id="BillingState"
+                    name="BillingState"
+                    label="State/Province"
+                    value={formik.values.BillingState}
+                    onChange={formik.handleChange}
+                    margin="normal"
+                    size="small"
+                  />
+                </Box>
+              </Box>
               
-              <Grid item xs={12} sm={6} component="div">
-                <TextField
-                  fullWidth
-                  id="BillingState"
-                  name="BillingState"
-                  label="State/Province"
-                  value={formik.values.BillingState}
-                  onChange={formik.handleChange}
-                  margin="normal"
-                  size="small"
-                />
-              </Grid>
+              <Box sx={{ display: 'flex', gap: 2 }}>
+                <Box sx={{ flex: 1 }}>
+                  <TextField
+                    fullWidth
+                    id="BillingPostalCode"
+                    name="BillingPostalCode"
+                    label="Postal Code"
+                    value={formik.values.BillingPostalCode}
+                    onChange={formik.handleChange}
+                    margin="normal"
+                    size="small"
+                  />
+                </Box>
+                
+                <Box sx={{ flex: 1 }}>
+                  <TextField
+                    fullWidth
+                    id="BillingCountry"
+                    name="BillingCountry"
+                    label="Country"
+                    value={formik.values.BillingCountry}
+                    onChange={formik.handleChange}
+                    margin="normal"
+                    size="small"
+                  />
+                </Box>
+              </Box>
               
-              <Grid item xs={12} sm={6} component="div">
-                <TextField
-                  fullWidth
-                  id="BillingPostalCode"
-                  name="BillingPostalCode"
-                  label="Postal Code"
-                  value={formik.values.BillingPostalCode}
-                  onChange={formik.handleChange}
-                  margin="normal"
-                  size="small"
-                />
-              </Grid>
-              
-              <Grid item xs={12} sm={6} component="div">
-                <TextField
-                  fullWidth
-                  id="BillingCountry"
-                  name="BillingCountry"
-                  label="Country"
-                  value={formik.values.BillingCountry}
-                  onChange={formik.handleChange}
-                  margin="normal"
-                  size="small"
-                />
-              </Grid>
-              
-              <Grid item xs={12} component="div">
+              <Box>
                 <Divider sx={{ my: 1 }} />
-              </Grid>
+              </Box>
               
-              <Grid item xs={12} component="div">
+              <Box>
                 <TextField
                   fullWidth
                   id="Description"
@@ -329,34 +332,32 @@ const AccountFormPage: React.FC = () => {
                   margin="normal"
                   size="small"
                 />
-              </Grid>
+              </Box>
               
-              <Grid item xs={12} component="div">
-                <Box display="flex" justifyContent="space-between" mt={2}>
-                  <Button
-                    variant="outlined"
-                    onClick={handleCancel}
-                    disabled={submitting}
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    disabled={submitting}
-                  >
-                    {submitting ? 'Saving...' : (isEditMode ? 'Update Account' : 'Create Account')}
-                  </Button>
-                </Box>
-              </Grid>
+              <Box display="flex" justifyContent="space-between" mt={2}>
+                <Button
+                  variant="outlined"
+                  onClick={handleCancel}
+                  disabled={submitting}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  disabled={submitting}
+                >
+                  {submitting ? 'Saving...' : (isEditMode ? 'Update Account' : 'Create Account')}
+                </Button>
+              </Box>
               
               {error && submitting && (
-                <Grid item xs={12} component="div">
+                <Box>
                   <ErrorMessage message={error} />
-                </Grid>
+                </Box>
               )}
-            </Grid>
+            </Box>
           </form>
         </CardContent>
       </Card>
