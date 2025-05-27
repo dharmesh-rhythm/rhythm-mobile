@@ -191,7 +191,7 @@ const AssessmentFormPage: React.FC = () => {
             </FormControl>
 
             <FormControl fullWidth margin="normal" error={!!formErrors.accountId} required>
-              <InputLabel id="account-label">Account</InputLabel>
+              <InputLabel id="account-label">Associated Customer</InputLabel>
               <Select
                 labelId="account-label"
                 value={accountId}

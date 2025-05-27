@@ -176,7 +176,7 @@ const AccountFormPage: React.FC = () => {
                   fullWidth
                   id="Name"
                   name="Name"
-                  label="Associated Customer"
+                  label="Account Name"
                   value={formik.values.Name}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
