@@ -25,7 +25,7 @@ const Header: React.FC = () => {
     if (path.match(/^\/contacts\/new$/) || path.match(/^\/accounts\/[^/]+\/contacts\/new$/)) return 'New Contact';
     if (path.match(/^\/contacts\/[^/]+\/edit$/)) return 'Edit Contact';
     if (path.match(/^\/contacts\/[^/]+$/)) return 'Contact Details';
-    return 'Rhythm Mobile';
+    return 'SRCM';
   };
 
   // Determine if back button should be shown
