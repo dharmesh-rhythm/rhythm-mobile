@@ -17,11 +17,11 @@ const Header: React.FC = () => {
 
   // Determine title based on current path
   const getTitle = () => {
-    if (path === '/' || path === '/accounts') return 'Accounts';
+    if (path === '/' || path === '/accounts') return 'SRCM';
     if (path.match(/^\/accounts\/new$/)) return 'New Account';
     if (path.match(/^\/accounts\/[^/]+\/edit$/)) return 'Edit Account';
     if (path.match(/^\/accounts\/[^/]+$/)) return 'Account Details';
-    if (path === '/contacts') return 'Contacts';
+    if (path === '/contacts') return 'SRCM';
     if (path.match(/^\/contacts\/new$/) || path.match(/^\/accounts\/[^/]+\/contacts\/new$/)) return 'New Contact';
     if (path.match(/^\/contacts\/[^/]+\/edit$/)) return 'Edit Contact';
     if (path.match(/^\/contacts\/[^/]+$/)) return 'Contact Details';
